@@ -16,10 +16,4 @@ $(document).ready(function() {
 	};
 	var formReturn = formToOBJ();
 	//How would I access the returned OBJ from var.
-	console.log(formReturn);
-
-	$('.first').text(formReturn.firstName);
-	$('.last').text(formReturn.lastName);
-	$('.kwh').text(formReturn.kiloWatt);
-	$('.water').text(formReturn.water);
 });

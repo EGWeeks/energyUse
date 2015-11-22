@@ -1,13 +1,21 @@
 body {
 	margin: 0 auto;
-	background: white;
+	background: #09f;
 }
 
-div {
-	min-height: 2em;
-	border: 1px solid #000;
+h3 {
+	color: #09f;
 }
 
-img {
-	width: 100%;
+
+.container {
+	margin-top: 1em;
+	background: #fff;
+	-webkit-box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
+}
+
+.mainimg {
+	width: 90%;
 }

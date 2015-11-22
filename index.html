@@ -9,14 +9,8 @@
 <body>
 	<div class='container'>
 		<section>
-			<div class='row'>
-				<div class='col-md-1'>
-				</div>
-				<div class='col-md-10'>
-					<img src='img/placeholder.jpeg' alt='energy'>
-				</div>
-				<div class='col-md-1'>
-				</div>
+			<div class='col-md-12'>
+				<h3>My energy Usage</h3>
 			</div>
 		</section>
 		<section>
@@ -24,24 +18,27 @@
 				<div class='col-md-1'>
 				</div>
 				<div class='col-md-5'>
-					About
+				<img src='img/transbulb.png' class='mainimg' alt='earth inside a lightbulb' />
 				</div>
 				<div class='col-md-5'>
-					<form action='display.html' method='GET' id='form'>
-						<label for="firstName"> First Name:
-							<input type='text' id='firstName'name='firstName' />
+					<form action='display.html' method='GET'>
+						<label for="firstName">
+							<input type='text' class='form-control' name='firstName' placeholder='First Name' />
 						</label>
-						<label for="lastName"> Last Name:
-							<input type='text' id='lastName'name='lastName' />
+						<label for="lastName">
+							<input type='text' class='form-control' name='lastName' placeholder='Last Name' />
+						</label>
+						<label for="email">
+							<input type='email' class='form-control' name='email' placeholder='Email' />
 						</label>
 						<h4>Energy Usage &amp; Bill Cost</h4>
-						<label for="kiloWatt"> Electrical Usage in killoWatt Hour:
-							<input type='text' id='kiloWatt'name='kiloWatt' />
+						<label for="kiloWatt">
+							<input type='text' class='form-control' name='kiloWatt' placeholder='electric Bill in kiloWat'/>
 						</label>
-						<label for="water"> Water Usage in Gallons:
-							<input type='text' id='water'name='water' />
+						<label for="water">
+							<input type='text' class='form-control' placeholder='water used in gallons'/>
 						</label>
-						<input type='submit' id='button' />
+						<input type='submit' id='button' class="btn btn-default btn-lg"/>
 					</form>
 				</div>
 				<div class='col-md-1'>
