@@ -1,56 +1,25 @@
 $(document).ready(function() {
-	if(document.location.search) {
-    	var queryString = document.location.search.replace('?', '');
+	
+	var formToOBJ = function() {
+		var formOBJ = {};
+		if(document.location.search) {
+			// get everything in the url AFTER the ?
+	  	var queryString = document.location.search.replace('?', '');
+			var keyValue = queryString.split('&');    	
+	  	// loop through KeyValue arr, put each value into prop and value OBJ
+	  	keyValue.forEach(function(item) {
+	  		var values = item.split('=');
+	  		formOBJ[values[0]] = values[1];
+			});
+	  }
+	  return formOBJ;
+	};
+	var formReturn = formToOBJ();
+	//How would I access the returned OBJ from var.
+	console.log(formReturn);
 
-    	var keyValue = queryString.split('&');
-    	var formOBJ = {};
-    	keyValue.forEach(function(item) {
-    		var values = item.split('=');
-    		console.log(values);
-    		formOBJ[values[0]] = values[1];
-
-    	});
-    	console.log(formOBJ);
-
-    // var pairs = queryString.split('&').map(function (pair) {
-    //   console.log(pair.split('='));
-    //   return pair.split('=');
-    // });
-
-    	// console.log(pairs);
-
-  	}
+	$('.first').text(formReturn.firstName);
+	$('.last').text(formReturn.lastName);
+	$('.kwh').text(formReturn.kiloWatt);
+	$('.water').text(formReturn.water);
 });
-  // function values(arr) {
-  // 	var formVal = [];
-  // 	formVal.push(arr[1]);
-  // 	console.log(formVal);
-  // }
-
-  // [
-  // 	['firstName', 'bob'],
-  // 	['lastName', 'barker'],
-  // 	[key, value]
-  // ]
-
-
-
-
-
-// var oldArry = [1,2,3,4,5];
-
-// var newArry = [];
-
-// for(var i = 0; i < oldArry.length; i++){
-// 	if(i % 2 === 0){
-// 		newArry.push(oldArry[i]);	
-// 	}
-// }
-// console.log(newArry);
-
-// var mapArray = oldArry.map(function(item, index, array){
-// 	if(index % 2 === 0){
-// 		return item;
-// 	}
-// });
-// console.log(mapArray);
