@@ -32,3 +32,16 @@ var data = {
 var myLineChart = new Chart(ctx).Line(data);
 
 });
+
+var apiKey = "5A3F06BA770E81ECBE0185475ED9F2B6";
+
+$.ajax({
+    url: 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.REV.CO-RES.M',
+    dataType: 'json',
+    success: function(data) {
+        // log data
+        console.log(data);
+    }
+});
+
+
