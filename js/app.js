@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	// Form Fields get stored in object
-	var formToOBJ = function() {
+	function formToOBJ() {
 		var formOBJ = {};
 		if(document.location.search) {
 			// get everything in the url AFTER the ?
@@ -13,9 +13,21 @@ $(document).ready(function() {
 	  		formOBJ[values[0]] = values[1];
 			});
 	  }
-	  return formOBJ;
-	};
-	var formReturn = formToOBJ();
-	//How would I access the returned OBJ from var.
+	  return nameInsert(formOBJ);
+	}
+	formToOBJ();
 
+	//replacuing default text with the users information
+	function nameInsert(formInfo) {
+		//declaring email bc jshint is picky
+		var eMail;
+		$('.first').text(formInfo.firstName);
+		$('.last').text(" " +formInfo.lastName);
+		
+		if(formInfo.email.length !== 0) {
+			eMail = formInfo.email.replace('%40', '@');
+		}
+		$('.email').text(eMail);
+		$('.kwh').text(' '+formInfo.kiloWatt);
+	}
 });
