@@ -23,11 +23,12 @@ $(document).ready(function() {
 		var eMail;
 		$('.first').text(formInfo.firstName);
 		$('.last').text(" " +formInfo.lastName);
-		
+		//if email is inputted the query string will replace @ with %40
+		//fixing that 
 		if(formInfo.email.length !== 0) {
 			eMail = formInfo.email.replace('%40', '@');
 		}
 		$('.email').text(eMail);
-		$('.kwh').text(' '+formInfo.kiloWatt);
+		$('.cost').text(' '+formInfo.bill);
 	}
 });

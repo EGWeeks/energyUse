@@ -28,7 +28,12 @@ function responseElectricCost(data){
 
 
 function userData() {
-	var userKWH = $('.kwh').text();
+    var aveCost = [];
+	var nov = $('.cost').text();
+    //parseFloat so the nov values do not concat
+    var num = parseFloat(nov) + (nov * 0.16685);
+    console.log(num);
+
 	
 }
 userData();
@@ -58,7 +63,7 @@ var ctx = $("#myChart").get(0).getContext("2d");
 // This chart needs to be generated AFTER THE DATA IS RETURNED!
 //
 var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    labels: [ "June","july", "August", "September", "October", "November", "December", "January", "Febuary", "March", "April", "May"],
     datasets: [
         {
             label: "Colorado average electric cost",
@@ -68,7 +73,7 @@ var data = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [coloradoEBill.jan, coloradoEBill.feb, coloradoEBill.march, coloradoEBill.april, coloradoEBill.may, coloradoEBill.june, coloradoEBill.july, coloradoEBill.august, coloradoEBill.sept, coloradoEBill.oct, coloradoEBill.nov, coloradoEBill.dec]
+            data: [coloradoEBill.june, coloradoEBill.july, coloradoEBill.august, coloradoEBill.sept, coloradoEBill.oct, coloradoEBill.nov, coloradoEBill.dec, coloradoEBill.jan, coloradoEBill.feb, coloradoEBill.march, coloradoEBill.april, coloradoEBill.may]
         }
         // National Average 
     ]
@@ -77,7 +82,15 @@ var data = {
 var myLineChart = new Chart(ctx).Line(data);
 }
 
+
 // Bar graph 
+// Two Api calls 
+// One for each state
+// Info get compared side by side
+// monthly state total usage get returned
+//
+//
+//
 
 var firstState = "CO";
 
@@ -107,6 +120,7 @@ $.ajax({
 });
 
 function responseFirstState(data) {
+    // response count keep count of each response function
     responseCount++;
     var fTimeInMonths = [];
     fMonthStateUsage = [];
@@ -114,29 +128,36 @@ function responseFirstState(data) {
         fMonthStateUsage.push(data.series[0].data[i][1]);
         fTimeInMonths.push(data.series[0].data[i][0]);
     }
+    // will only return is responceCount is greater than 1 meaning both API requested have responded!!
     if(responseCount > 1){
         return barGraph(fMonthStateUsage, sMonthStateUsage, fTimeInMonths); 
     }
     
 }
 
+
+
+// takes the second state api data and stores dates and usage into array
 function responseSecondState(data) {
+    // response count keep count of each response function
     responseCount++;
+    //declaring array to loop and store state kilowatt used and 
     var sTimeInMonths = [];
     sMonthStateUsage = [];
     for(var i = 0; i < 12; i++) {
         sMonthStateUsage.push(data.series[0].data[i][1]);
         sTimeInMonths.push(data.series[0].data[i][0]);
     }
+    // will only return is responceCount is greater than 1 meaning both API requested have responded!!
     if(responseCount > 1){
         return barGraph(fMonthStateUsage, sMonthStateUsage, sTimeInMonths); 
     }
 }
 
+
+
+// Take the array data and creates a bar graph with it
 function barGraph(fUsageArr, sUsageArr, months) {
-    console.log(months);
-    console.log(fUsageArr);
-    console.log(sUsageArr);
     // get the canvas tag id
     var ctx = $('#myBarChart').get(0).getContext('2d');
 
