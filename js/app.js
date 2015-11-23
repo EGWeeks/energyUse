@@ -1,5 +1,6 @@
 $(document).ready(function() {
-	
+
+	// Form Fields get stored in object
 	var formToOBJ = function() {
 		var formOBJ = {};
 		if(document.location.search) {
@@ -16,4 +17,5 @@ $(document).ready(function() {
 	};
 	var formReturn = formToOBJ();
 	//How would I access the returned OBJ from var.
+
 });
