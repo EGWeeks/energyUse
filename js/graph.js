@@ -23,18 +23,19 @@ function responseElectricCost(data){
 		// array for dates
 		months.push(data.series[0].data[i][0]);
 	}
-	return graphKWH(monthlyElectricCost, months);
+	return mainKWH(monthlyElectricCost, months);
 }
 
 
 function userData() {
 	var userKWH = $('.kwh').text();
+	
 }
 userData();
 
 
 // Graphing API calls 
-function graphKWH(costArr, timeArr) {
+function mainKWH(costArr, timeArr) {
 	var coloradoEBill = {
 	jan : 91.10,
 	feb : 74.76,
@@ -49,8 +50,7 @@ function graphKWH(costArr, timeArr) {
 	nov : 79.47,
 	dec : 92.73,
 };
-	console.log(costArr);
-	console.log(timeArr);
+	
 	// Get context with jQuery - using jQuery's .get() method.
 var ctx = $("#myChart").get(0).getContext("2d");
 // This will get the first returned node in the jQuery collection.
@@ -61,7 +61,7 @@ var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     datasets: [
         {
-            label: "Colorado average electric cost per kWh",
+            label: "Colorado average electric cost",
             fillColor: "rgba(220,220,220,0.2)",
             strokeColor: "rgba(220,190,220,1)",
             pointColor: "rgba(220,190,220,1)",
@@ -69,11 +69,99 @@ var data = {
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
             data: [coloradoEBill.jan, coloradoEBill.feb, coloradoEBill.march, coloradoEBill.april, coloradoEBill.may, coloradoEBill.june, coloradoEBill.july, coloradoEBill.august, coloradoEBill.sept, coloradoEBill.oct, coloradoEBill.nov, coloradoEBill.dec]
-        },
+        }
+        // National Average 
     ]
 };
 
 var myLineChart = new Chart(ctx).Line(data);
 }
 
+// Bar graph 
+
+var firstState = "CO";
+
+var responseCount = 0;
+var fMonthStateUsage = [];
+var sMonthStateUsage = [];
+
+//state kilowatt usage
+$.ajax({
+  url: 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.SALES.'+firstState+'-RES.M',
+  dataType: 'json',
+  success: function(data) {
+    // when API data comes back call this functon
+    responseFirstState(data);
+  }
+});
+
+var secondState = "AK";
+//state kilowatt usage
+$.ajax({
+  url: 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.SALES.'+secondState+'-RES.M',
+  dataType: 'json',
+  success: function(data) {
+    // when API data comes back call this functon
+    responseSecondState(data);
+  }
+});
+
+function responseFirstState(data) {
+    responseCount++;
+    var fTimeInMonths = [];
+    fMonthStateUsage = [];
+    for(var i = 0; i < 12; i++) {
+        fMonthStateUsage.push(data.series[0].data[i][1]);
+        fTimeInMonths.push(data.series[0].data[i][0]);
+    }
+    if(responseCount > 1){
+        return barGraph(fMonthStateUsage, sMonthStateUsage, fTimeInMonths); 
+    }
+    
+}
+
+function responseSecondState(data) {
+    responseCount++;
+    var sTimeInMonths = [];
+    sMonthStateUsage = [];
+    for(var i = 0; i < 12; i++) {
+        sMonthStateUsage.push(data.series[0].data[i][1]);
+        sTimeInMonths.push(data.series[0].data[i][0]);
+    }
+    if(responseCount > 1){
+        return barGraph(fMonthStateUsage, sMonthStateUsage, sTimeInMonths); 
+    }
+}
+
+function barGraph(fUsageArr, sUsageArr, months) {
+    console.log(months);
+    console.log(fUsageArr);
+    console.log(sUsageArr);
+    // get the canvas tag id
+    var ctx = $('#myBarChart').get(0).getContext('2d');
+
+    var data = {
+    labels: ["August", "September", "October", "November", "December", "January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+            label: "First State Picked",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [fUsageArr[11], fUsageArr[10], fUsageArr[9], fUsageArr[8], fUsageArr[7], fUsageArr[6], fUsageArr[5], fUsageArr[4], fUsageArr[3], fUsageArr[2], fUsageArr[1], fUsageArr[0]]
+        },
+        {
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: [sUsageArr[11], sUsageArr[10], sUsageArr[9], sUsageArr[8], sUsageArr[7], sUsageArr[6], sUsageArr[5], sUsageArr[4], sUsageArr[3], sUsageArr[2], sUsageArr[1], sUsageArr[0]]
+        }
+    ]
+};
+    //create new chart
+    var myBarChart = new Chart(ctx).Bar(data);
+}
 });
