@@ -67,8 +67,8 @@ var data = {
         // customer average
          {
             label: "user average electric cost",
-            fillColor: "rgba(220,218,220,0.2)",
-            strokeColor: "rgba(220,180,220,1)",
+            fillColor: "rgba(220,212,220,0.2)",
+            strokeColor: "rgba(151, 187, 205,1)",
             pointColor: "rgba(220,180,220,1)",
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
@@ -92,6 +92,7 @@ var myLineChart = new Chart(ctx).Line(data);
 //
 
 var firstState = "CO";
+var secondState = "AK";
 
 var responseCount = 0;
 var fMonthStateUsage = [];
@@ -107,7 +108,7 @@ $.ajax({
   }
 });
 
-var secondState = "AK";
+
 //state kilowatt usage
 $.ajax({
   url: 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.SALES.'+secondState+'-RES.M',
@@ -117,6 +118,8 @@ $.ajax({
     responseSecondState(data);
   }
 });
+
+
 
 function responseFirstState(data) {
     // response count keep count of each response function
@@ -133,7 +136,6 @@ function responseFirstState(data) {
     }
     
 }
-
 
 
 // takes the second state api data and stores dates and usage into array
