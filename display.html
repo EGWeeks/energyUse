@@ -11,11 +11,9 @@
 		<section>
 			<div class='row'>
 				<div class='col-md-2'>
-					<h4><span class='first'> firstname </span><span class='last'>lastname </span></h4>
-					<h5 class='email'> email </h5>
 				</div>
 				<div class='col-md-8'>
-					<h3 class='mainHeaders'>Average Residential Electric Cost</h3>
+					<h3 class='mainHeaders'>Residential Electric Cost</h3>
 				</div>
 				<div class='col-md-2'>
 				</div>	
@@ -24,12 +22,17 @@
 		<section>
 			<div class='row'>
 				<div class='col-md-2'>
-					<h5>Energy Bill Cost<span class='cost'> cost</span></h5>
+						<h4><span class='first'> firstname </span><span class='last'>lastname </span></h4>
+					<h5 class='email'> email </h5>
+					<h5>My eletrical Bill Cost &#36;<span class='cost'>cost</span> for the month of November.</h5>
+					<h4 class='line-label'>&#36;</h4>
 				</div>
 				<div class='col-md-8'>
 					<canvas id="myChart" width="730" height="400"></canvas>
 				</div>
 				<div class='col-md-2'>
+					<p><img src='img/purple.png' alt='purple'/>= Average Coloradoan's Bill Cost</p>
+					<p><img src='img/blue.png' alt='blue'/>= My bill cost (Information is based off average percent &plusmn;)</p>
 				</div>
 			</div>
 		</section>
@@ -42,7 +45,8 @@
 				<div class='col-md-2'>
 				</div>
 				<div class='col-md-8'>
-					<h3 class ='mainHeaders'> <span class= 'firstState'>firstState</span>vs<span class= 'secondState'>secondState</span></h3>
+					<h3 class='mainHeaders'>Total State Electricity Usage</h3>
+					<h4 class ='mainHeaders'><span class= 'firstState'>firstState</span>vs<span class= 'secondState'>secondState</span></h3>
 				</div>
 				<div class='col-md-2'>
 				</div>
@@ -51,11 +55,15 @@
 		<section>
 			<div class='row'>
 				<div class='col-md-2'>
+					<h4 class='bar-label'>Million Kilowatthours</h4>
 				</div>
 				<div class='col-md-8'>
 					<canvas id='myBarChart' width='730' height='400'></canvas>
 				</div>
 				<div class='col-md-2'>
+				<p><img src='img/gray.png' alt='gray cube' /> <span class='grayState'>default</span></p>
+				<p><img src='img/barblue.png' alt='gray cube' /> <span class='barblue'>default</span></p>
+
 				</div>
 			</div>
 		</section>

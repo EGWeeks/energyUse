@@ -1,3 +1,6 @@
+* {
+	color: #666;
+}
 body {
 	margin: 0 auto;
 	background: url("../img/sky.jpg"); 
@@ -14,8 +17,34 @@ body {
 
 }
 .splitter {
-	border: 1px solid #000;
+	border: 1px solid #666;
 }
+
 .mainHeaders {
 	text-align: center;
+}
+
+.line-label {
+	margin-top: 2em;
+	float: right;
+}
+
+.bar-label {
+	text-align: center;
+	margin-top: 8em;
+	margin-left: 4em;
+}
+
+.firstC {
+	background: rgb(220,220,220);
+	width: 1em;
+	height: 1em;
+	margin-bottom: 1em;
+
+}
+
+.secondC {
+	background: rgb(151,187,205);
+	width: 1em;
+	height: 1em;
 }

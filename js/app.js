@@ -29,8 +29,10 @@ $(document).ready(function() {
 			eMail = formInfo.email.replace('%40', '@');
 		}
 		$('.email').text(eMail);
-		$('.cost').text(' '+formInfo.bill);
+		$('.cost').text(formInfo.bill);
 		$('.firstState').text(formInfo.firstState+ ' ');
 		$('.secondState').text(' '+formInfo.secondState);
+		$('.grayState').text(formInfo.firstState);
+		$('.barblue').text(formInfo.secondState);
 	}
 });
