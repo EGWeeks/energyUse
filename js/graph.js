@@ -1,46 +1,35 @@
 $(document).ready(function() {
 
+var apiKey = '5A3F06BA770E81ECBE0185475ED9F2B6';
 
-
-var apiKey = "5A3F06BA770E81ECBE0185475ED9F2B6";
-//Revenue
-$.ajax({
-  url: 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.PRICE.CO-RES.M',
-  dataType: 'json',
-  success: function(data) {
-  	// when API data comes back call this functon
-  	responseElectricCost(data);
-  }
-});
-
-// gets the last 8  month of electric cost and dates
-function responseElectricCost(data){
-	var monthlyElectricCost = [];
-	var months = [];
-	for(var i = 0; i < 8; i++) {
-		// array for colorado monthly electrical cost
-		monthlyElectricCost.push(data.series[0].data[i][1]);
-		// array for dates
-		months.push(data.series[0].data[i][0]);
-	}
-	return mainKWH(monthlyElectricCost, months);
-}
 
 
 function userData() {
-    var aveCost = [];
+    var aveCost = {};
 	var nov = $('.cost').text();
     //parseFloat so the nov values do not concat
-    var num = parseFloat(nov) + (nov * 0.16685);
-    console.log(num);
+     aveCost.dec = parseFloat(nov) + (nov * 0.1668);
+     aveCost.jan = aveCost.dec - (aveCost.dec * 0.0175);
+     aveCost.feb = aveCost.jan - (aveCost.jan * 0.1793);
+     aveCost.mar = aveCost.feb + (aveCost.feb * 0.0833);
+     aveCost.apr = aveCost.mar - (aveCost.mar * 0.0253);
+     aveCost.may = aveCost.apr + (aveCost.apr * 0.0659);
+     aveCost.jun = aveCost.may + (aveCost.may * 0.1832);
+     aveCost.jul = aveCost.jun + (aveCost.jun * 0.1432);
+     aveCost.aug = aveCost.jul - (aveCost.jul * 0.0103);
+     aveCost.sep = aveCost.aug - (aveCost.aug * 0.3251);
+     aveCost.oct = aveCost.sep  - (aveCost.sep * 0.0952);
+     aveCost.nov = parseFloat(nov);
+     console.log(typeof aveCost.nov);
 
-	
+     return mainKWH(aveCost);
 }
+
 userData();
 
 
 // Graphing API calls 
-function mainKWH(costArr, timeArr) {
+function mainKWH(cost) {
 	var coloradoEBill = {
 	jan : 91.10,
 	feb : 74.76,
@@ -74,8 +63,18 @@ var data = {
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
             data: [coloradoEBill.june, coloradoEBill.july, coloradoEBill.august, coloradoEBill.sept, coloradoEBill.oct, coloradoEBill.nov, coloradoEBill.dec, coloradoEBill.jan, coloradoEBill.feb, coloradoEBill.march, coloradoEBill.april, coloradoEBill.may]
+         },
+        // customer average
+         {
+            label: "user average electric cost",
+            fillColor: "rgba(220,218,220,0.2)",
+            strokeColor: "rgba(220,180,220,1)",
+            pointColor: "rgba(220,180,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [cost.jun, cost.jul, cost.aug, cost.sep, cost.oct, cost.nov, cost.dec, cost.jan, cost.feb, cost.mar, cost.apr, cost.may]
         }
-        // National Average 
     ]
 };
 
