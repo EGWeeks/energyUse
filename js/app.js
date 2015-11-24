@@ -30,5 +30,7 @@ $(document).ready(function() {
 		}
 		$('.email').text(eMail);
 		$('.cost').text(' '+formInfo.bill);
+		$('.firstState').text(formInfo.firstState+ ' ');
+		$('.secondState').text(' '+formInfo.secondState);
 	}
 });

@@ -20,7 +20,6 @@ function userData() {
      aveCost.sep = aveCost.aug - (aveCost.aug * 0.3251);
      aveCost.oct = aveCost.sep  - (aveCost.sep * 0.0952);
      aveCost.nov = parseFloat(nov);
-     console.log(typeof aveCost.nov);
 
      return mainKWH(aveCost);
 }
@@ -90,13 +89,17 @@ var myLineChart = new Chart(ctx).Line(data);
 //
 //
 //
+var firstState = $('.firstState').text();
+var secondState = $('.secondState').text();
 
-var firstState = "CO";
-var secondState = "AK";
+//Removes whitespace attached to string
+firstState = firstState.replace(' ', '');
+secondState = secondState.replace(' ', '');
+
 
 var responseCount = 0;
-var fMonthStateUsage = [];
-var sMonthStateUsage = [];
+var fMonthStateUsage;
+var sMonthStateUsage;
 
 //state kilowatt usage
 $.ajax({

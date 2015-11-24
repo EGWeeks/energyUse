@@ -1,9 +1,21 @@
 body {
 	margin: 0 auto;
-	background: white; 
+	background: url("../img/sky.jpg"); 
 }
 
-div {
-	min-height: 2em;
+.container {
+	background: #fff;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	-webkit-box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
+	border-radius: 2%;
+
+}
+.splitter {
 	border: 1px solid #000;
+}
+.mainHeaders {
+	text-align: center;
 }
