@@ -103,7 +103,7 @@ var sMonthStateUsage;
 
 //state kilowatt usage
 $.ajax({
-  url: 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.SALES.'+firstState+'-RES.M',
+  url: 'https://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.SALES.'+firstState+'-RES.M',
   dataType: 'json',
   success: function(data) {
     // when API data comes back call this functon
@@ -114,7 +114,7 @@ $.ajax({
 
 //state kilowatt usage
 $.ajax({
-  url: 'http://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.SALES.'+secondState+'-RES.M',
+  url: 'https://api.eia.gov/series/?api_key=' + apiKey + '&series_id=ELEC.SALES.'+secondState+'-RES.M',
   dataType: 'json',
   success: function(data) {
     // when API data comes back call this functon
