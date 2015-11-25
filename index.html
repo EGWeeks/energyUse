@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 	<meta charset='utf-8'>
 	<title>My Energy Use</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">	
@@ -13,7 +14,7 @@
 				<div class='col-md-1'>
 				</div>
 					<div class='col-md-5'>
-						<h3>Cost &amp; Usage Electric Comparison</h3>
+						<h3>Electrical Cost &amp; Usage Comparison</h3>
 					</div>
 					<div class='col-md-5'>
 					</div>
@@ -41,7 +42,7 @@
 						</label>
 						<h4>Bill Cost</h4>
 						<label for="electric price">
-							<input type='text' class='form-control' name='bill' placeholder='electric Bill cost'/>
+							<input type='text' class='form-control' id='billCost'name='bill' placeholder='electric Bill cost'/>
 						</label>
 						<h4>Compare state electric totals</h4> 
 						<label for='firstState'>

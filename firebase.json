@@ -1,0 +1,9 @@
+{
+  "firebase": "energyuse",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

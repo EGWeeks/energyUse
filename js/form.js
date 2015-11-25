@@ -11,11 +11,6 @@ $(document).ready(function() {
 		localStorage.setItem('firstName', fNameValue);
 		localStorage.setItem('lastName', lNameValue);
 		localStorage.setItem('email', emailAdd);
-		//ALERT
-		//
-		//
-		//
-		alert(localStorage.getItem('firstName')+ "!!!! I have infected your computer and now have all your personal information. muawhaha!");
 	});
 
 	function storageLoad() {
