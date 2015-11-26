@@ -7,6 +7,10 @@ h3 {
 	color: #39f;
 }
 
+video {
+	width: 40em;
+	height: 30em;
+}
 
 .container {
 	margin-top: 1em;
