@@ -17,7 +17,7 @@ $(document).ready(function() {
 	}
 	formToOBJ();
 
-	//replacuing default text with the users information
+	//replacing default text with the users information
 	function nameInsert(formInfo) {
 		//declaring email bc jshint is picky
 		var eMail;
