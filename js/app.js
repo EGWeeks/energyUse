@@ -3,7 +3,7 @@ $(document).ready(function() {
 	// Form Fields get stored in object
 	function formToOBJ() {
 		var formOBJ = {};
-		if(document.location.search) {
+		if (document.location.search) {
 			// get everything in the url AFTER the ?
 	  	var queryString = document.location.search.replace('?', '');
 			var keyValue = queryString.split('&');    	
@@ -25,7 +25,7 @@ $(document).ready(function() {
 		$('.last').text(" " +formInfo.lastName);
 		//if email is inputted the query string will replace @ with %40
 		//fixing that 
-		if(formInfo.email.length !== 0) {
+		if (formInfo.email.length !== 0) {
 			eMail = formInfo.email.replace('%40', '@');
 		}
 		$('.email').text(eMail);
